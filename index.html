@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jesper Haga</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,440;9..144,560;9..144,650&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f3;
+    --surface: #ffffff;
+    --ink: #24211d;
+    --ink-muted: #6b6459;
+    --ink-faint: #948c7c;
+    --accent: #7a2436;
+    --accent-soft: #f1e3e1;
+    --rule: #e4ddd1;
+    --focus: #7a2436;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17140f;
+      --surface: #1f1b15;
+      --ink: #ede7db;
+      --ink-muted: #a79c88;
+      --ink-faint: #786f5d;
+      --accent: #e2929d;
+      --accent-soft: #3a2226;
+      --rule: #332d24;
+      --focus: #e2929d;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f;
+    --surface: #1f1b15;
+    --ink: #ede7db;
+    --ink-muted: #a79c88;
+    --ink-faint: #786f5d;
+    --accent: #e2929d;
+    --accent-soft: #3a2226;
+    --rule: #332d24;
+    --focus: #e2929d;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 5rem;
+  }
+
+  h1, h2, .display {
+    font-family: "Fraunces", Georgia, serif;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1.1rem;
+  }
+
+  /* ---------- header ---------- */
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .avatar {
+    flex: none;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 560;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.02em;
+  }
+
+  .identity h1 {
+    font-size: 2.35rem;
+    font-weight: 560;
+    line-height: 1.1;
+    margin: 0 0 0.5rem;
+  }
+
+  .title-line {
+    margin: 0 0 0.2rem;
+    color: var(--ink-muted);
+    font-size: 0.98rem;
+    line-height: 1.45;
+  }
+
+  .bio {
+    margin: 1.75rem 0 0;
+    font-size: 1.08rem;
+    line-height: 1.65;
+    max-width: 62ch;
+  }
+
+  .edit-note {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    background: var(--accent-soft);
+    padding: 0.05rem 0.4rem;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  nav.nav {
+    margin-top: 2.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  nav.nav a { color: var(--ink-muted); text-decoration: none; }
+  nav.nav a:hover { color: var(--accent); }
+
+  /* ---------- sections ---------- */
+  section { margin-top: 3.75rem; scroll-margin-top: 1.5rem; }
+
+  .now-box {
+    border: 1px dashed var(--rule);
+    border-radius: 8px;
+    padding: 1.1rem 1.3rem;
+    background: var(--surface);
+  }
+  .now-box p { margin: 0; color: var(--ink-muted); font-size: 0.98rem; }
+  .now-box p + p { margin-top: 0.5rem; }
+
+  ol.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pub {
+    padding: 1.15rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  .pub:last-child { padding-bottom: 0; }
+
+  .pub-title {
+    margin: 0 0 0.35rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+
+  .pub-meta {
+    margin: 0 0 0.5rem;
+    color: var(--ink-muted);
+    font-size: 0.94rem;
+    line-height: 1.5;
+  }
+  .pub-meta strong { color: var(--ink); font-weight: 600; }
+  .pub-meta .venue { color: var(--accent); }
+  .pub-meta .year { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+
+  .pub-links {
+    margin: 0;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+  }
+  .pub-links a { text-decoration: none; }
+  .pub-links a:hover { text-decoration: underline; }
+  .pub-links .dot { color: var(--ink-faint); margin: 0 0.5rem; }
+
+  .cv-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.1rem;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    color: var(--accent);
+    text-decoration: none;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+  }
+  .cv-button:hover { background: var(--accent-soft); }
+
+  ul.contact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    font-size: 0.98rem;
+  }
+  ul.contact-list .label {
+    display: inline-block;
+    width: 8.5rem;
+    color: var(--ink-muted);
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    vertical-align: top;
+  }
+
+  .footer {
+    margin-top: 4.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    color: var(--ink-faint);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 520px) {
+    .header-top { gap: 1rem; }
+    .identity h1 { font-size: 1.9rem; }
+    ul.contact-list .label { display: block; width: auto; margin-bottom: 0.1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div class="header-top">
+      <div class="avatar" aria-hidden="true">JH</div>
+      <div class="identity">
+        <h1>Jesper Haga</h1>
+        <p class="title-line">Associate Professor (Tenure Track) — Foundation Bergsrådet Marcus Wallenberg Associate Professor in Finance</p>
+        <p class="title-line">Head, Department of Finance and Economics · Hanken School of Economics</p>
+      </div>
+    </div>
+
+    <p class="bio">
+      My empirical research centers on financial reporting and corporate governance — in particular the benefits and costs of more frequent financial reporting (quarterly versus semi-annual) for listed companies. Related work looks at cost behavior, earnings management, and organizational resilience. I've also contributed to government-funded research on obstacles to women's career advancement into corporate leadership. <span class="edit-note">edit this paragraph</span>
+    </p>
+
+    <nav class="nav" aria-label="Section navigation">
+      <a href="#research">Publications</a>
+      <a href="#working-papers">Working Papers</a>
+      <a href="#now">Now</a>
+      <a href="#cv">CV</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="now">
+    <p class="eyebrow">Now</p>
+    <div class="now-box">
+      <p>Add one or two lines on what you're currently teaching, presenting, or working on — this is the section colleagues' pages often skip, and it's the easiest one to keep fresh. Example: "Fall 2026 — teaching Financial Statement Analysis; presenting 'Repeat SPAC Sponsors' at [conference]."</p>
+      <p><span class="edit-note">edit this box, or delete the section</span></p>
+    </div>
+  </section>
+
+  <section id="research">
+    <p class="eyebrow">Publications</p>
+    <ol class="pub-list">
+
+      <li class="pub">
+        <p class="pub-title">Cost Behaviour and Reporting Frequency During the COVID-19 Outbreak</p>
+        <p class="pub-meta"><strong>Haga, J.</strong>, Finne, G., &amp; Sundvik, D. — <span class="venue">Accounting and Business Research</span>, <span class="year">Forthcoming</span></p>
+        <p class="pub-links"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4422731" target="_blank" rel="noopener">SSRN</a></p>
+      </li>
+
+      <li class="pub">
+        <p class="pub-title">Nothing to Fear: Strong Corporate Culture and Workplace Safety</p>
+        <p class="pub-meta"><strong>Haga, J.</strong>, Huhtamäki, F., Sundvik, D., &amp; Thor, T. — <span class="venue">Review of Quantitative Finance and Accounting</span>, <span class="year">Forthcoming</span></p>
+        <p class="pub-links"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4740104" target="_blank" rel="noopener">SSRN</a></p>
+      </li>
+
+      <li class="pub">
+        <p class="pub-title">Real Earnings Management in UK Private and Public Firms</p>
+        <p class="pub-meta"><strong>Haga, J.</strong>, Höglund, H., &amp; Sundvik, D. — <span class="venue">Journal of Accounting and Public Policy</span>, <span class="year">Forthcoming</span></p>
+        <p class="pub-links"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2731072" target="_blank" rel="noopener">SSRN</a></p>
+      </li>
+
+      <li class="pub">
+        <p class="pub-title">Long-Term Orientation and Earnings Management Strategies</p>
+        <p class="pub-meta"><strong>Haga, J.</strong>, Huhtamäki, F., &amp; Sundvik, D. — <span class="venue">Journal of International Accounting Research</span>, <span class="year">Forthcoming</span></p>
+        <p class="pub-links"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3310206" target="_blank" rel="noopener">SSRN</a></p>
+      </li>
+
+      <li class="pub">
+        <p class="pub-title">Identifying Portfolio-Based Systematic Risk Factors in Equity Markets</p>
+        <p class="pub-meta">Grobys, K., &amp; <strong>Haga, J.</strong> — <span class="venue">Finance Research Letters</span>, <span class="year">Forthcoming</span></p>
+        <p class="pub-links"><span class="edit-note">add link</span></p>
+      </li>
+
+      <li class="pub">
+        <p class="pub-title">The Market Price of Credit Risk and Economic States</p>
+        <p class="pub-meta">Grobys, K., &amp; <strong>Haga, J.</strong> — <span class="venue">Empirical Economics</span>, <span class="year">Forthcoming</span></p>
+        <p class="pub-links"><span class="edit-note">add link</span></p>
+      </li>
+
+      <li class="pub">
+        <p class="pub-title">Peer Firms' Reporting Frequency and Stock Price Synchronicity: European Evidence</p>
+        <p class="pub-meta"><strong>Haga, J.</strong>, Högholm, K., &amp; Sundvik, D. — <span class="venue">Journal of International Accounting, Auditing and Taxation</span>, Vol. 49 (<span class="year">2022</span>)</p>
+        <p class="pub-links"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3969719" target="_blank" rel="noopener">SSRN</a></p>
+      </li>
+
+      <li class="pub">
+        <p class="pub-title">Ruthless Exploiters or Ethical Guardians of the Workforce? Powerful CEOs and Their Impact on Workplace Safety and Health</p>
+        <p class="pub-meta"><strong>Haga, J.</strong>, Huhtamäki, F., &amp; Sundvik, D. — <span class="venue">Journal of Business Ethics</span>, Vol. 177 (<span class="year">2022</span>)</p>
+        <p class="pub-links"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3727466" target="_blank" rel="noopener">SSRN</a></p>
+      </li>
+
+      <li class="pub">
+        <p class="pub-title">Cost Behavior Around Corporate Tax Rate Cuts</p>
+        <p class="pub-meta"><strong>Haga, J.</strong>, Höglund, H., &amp; Sundvik, D. — <span class="venue">Journal of International Accounting, Auditing and Taxation</span>, Vol. 34 (<span class="year">2019</span>)</p>
+        <p class="pub-links"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3433703" target="_blank" rel="noopener">SSRN</a></p>
+      </li>
+
+      <li class="pub">
+        <p class="pub-title">Is Earnings Management Sensitive to Discount Rates?</p>
+        <p class="pub-meta"><strong>Haga, J.</strong>, Ittonen, K., Tronnes, P., &amp; Wong, L. — <span class="venue">Journal of Accounting Literature</span>, Vol. 41 (<span class="year">2018</span>)</p>
+        <p class="pub-links"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3141065" target="_blank" rel="noopener">SSRN</a></p>
+      </li>
+
+      <li class="pub">
+        <p class="pub-title">Initial Stage Clustering When Estimating Accounting Quality Measures With Self-Organizing Maps</p>
+        <p class="pub-meta"><strong>Haga, J.</strong>, Siekkinen, J., &amp; Sundvik, D. — <span class="venue">Expert Systems with Applications</span>, Vol. 42, No. 21 (<span class="year">2015</span>)</p>
+        <p class="pub-links"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3442102" target="_blank" rel="noopener">SSRN</a></p>
+      </li>
+
+      <li class="pub">
+        <p class="pub-title">A Neural Network Approach to Measure Real Activities Manipulation</p>
+        <p class="pub-meta"><strong>Haga, J.</strong>, Siekkinen, J., &amp; Sundvik, D. — <span class="venue">Expert Systems with Applications</span>, Vol. 42, No. 5 (<span class="year">2014</span>)</p>
+        <p class="pub-links"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3442100" target="_blank" rel="noopener">SSRN</a></p>
+      </li>
+
+    </ol>
+  </section>
+
+  <section id="working-papers">
+    <p class="eyebrow">Working Papers</p>
+    <ol class="pub-list">
+
+      <li class="pub">
+        <p class="pub-title">Repeat SPAC Sponsors</p>
+        <p class="pub-meta">Finne, G., &amp; <strong>Haga, J.</strong> — Working paper, posted <span class="year">2026</span></p>
+        <p class="pub-links"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7221518" target="_blank" rel="noopener">SSRN</a></p>
+      </li>
+
+      <li class="pub">
+        <p class="pub-title">Performance Persistence of SPAC Sponsors</p>
+        <p class="pub-meta">Finne, G., &amp; <strong>Haga, J.</strong> — Working paper, posted <span class="year">2026</span></p>
+        <p class="pub-links"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7335238" target="_blank" rel="noopener">SSRN</a></p>
+      </li>
+
+    </ol>
+  </section>
+
+  <section id="cv">
+    <p class="eyebrow">CV</p>
+    <a class="cv-button" href="#" aria-disabled="true">↓ Download CV (PDF) <span class="edit-note">replace with your file</span></a>
+  </section>
+
+  <section id="contact">
+    <p class="eyebrow">Contact</p>
+    <ul class="contact-list">
+      <li><span class="label">Email</span> <a href="mailto:jesper.haga@hanken.fi">jesper.haga@hanken.fi</a></li>
+      <li><span class="label">Phone</span> +358 50 062 1443</li>
+      <li><span class="label">Hanken</span> <a href="https://www.hanken.fi/en/person/jesper-haga" target="_blank" rel="noopener">hanken.fi/en/person/jesper-haga</a></li>
+      <li><span class="label">Scholar</span> <a href="https://scholar.google.com/citations?user=kGDB0akAAAAJ&hl=fi" target="_blank" rel="noopener">Google Scholar profile</a></li>
+      <li><span class="label">SSRN</span> <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=2360989" target="_blank" rel="noopener">SSRN author page</a></li>
+      <li><span class="label">LinkedIn</span> <span class="edit-note">add your link</span></li>
+    </ul>
+  </section>
+
+  <p class="footer">Jesper Haga · Department of Finance and Economics · Hanken School of Economics</p>
+
+</div>
+
+</body>
+</html>
